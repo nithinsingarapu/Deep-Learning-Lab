@@ -51,5 +51,5 @@ print(result)
 
 for i in range(sample):
   plt.subplot(1,5,i+1)
-  plt.title(f"Actual label : {sample_labels[i]\ predicted labels : {result[i]}")
+  plt.title(f"Actual label : {sample_labels[i]}\ predicted labels : {result[i]}")
   plt.imshow(sample[i])
