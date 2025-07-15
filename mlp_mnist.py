@@ -19,13 +19,13 @@ y_test = to_categorical(y_test, num_classes=10)
 # Build the model
 model = Sequential()
 model.add(Flatten(input_shape=(28, 28)))
-model.add(Dense(128, activation='relu'))      # increased neurons
-model.add(Dropout(0.2))                        # added dropout
+model.add(Dense(128, activation='relu'))   
+model.add(Dropout(0.2))                        
 model.add(Dense(64, activation='relu'))
 model.add(Dense(10, activation='softmax'))
 
 # Compile the model
-model.compile(optimizer='adam',               # switched to Adam optimizer
+model.compile(optimizer='adam',            
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
@@ -39,3 +39,17 @@ model.fit(X_train, y_train,
 # Evaluate the model
 loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
 print(f"\nTest Accuracy: {accuracy:.4f}")
+
+#predictions
+sample = X_test[:5]
+sample_labels = y_test[:5]
+
+predictions = model.predict(sample, sample_labels)
+print(predictions)
+result = np.argmax(predictions, axis = 1)
+print(result)
+
+for i in range(sample):
+  plt.subplot(1,5,i+1)
+  plt.title(f"Actual label : {sample_labels[i]\ predicted labels : {result[i]}")
+  plt.imshow(sample[i])
